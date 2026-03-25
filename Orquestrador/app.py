@@ -1,7 +1,7 @@
 """
 app.py — Ponto de entrada do Orquestrador como aplicativo desktop.
 
-Sobe o servidor FastAPI central na porta 5500 e abre a interface web
+Sobe o servidor FastAPI central na porta 5000 e abre a interface web
 do orquestrador via pywebview.
 """
 
@@ -13,7 +13,7 @@ import uvicorn
 import webview
 
 HOST = "127.0.0.1"
-PORT = 5500
+PORT = 5000
 URL  = f"http://{HOST}:{PORT}"
 
 
