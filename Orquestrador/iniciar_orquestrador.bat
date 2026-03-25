@@ -14,10 +14,10 @@ echo.
 call ..\.venv\Scripts\activate.bat
 
 :: 2. Abre o navegador do servidor ja na tela do Dashboard
-start chrome http://localhost:5000
+start chrome http://localhost:8080
 
-:: 3. Inicia o servidor liberado na porta 5000 pra receber os Agentes (0.0.0.0)
-python -m uvicorn main:app --host 0.0.0.0 --port 5000
+:: 3. Inicia o servidor liberado na porta 8080 pra receber os Agentes (0.0.0.0)
+python -m uvicorn main:app --host 0.0.0.0 --port 8080
 
 echo Servidor foi desligado.
 pause

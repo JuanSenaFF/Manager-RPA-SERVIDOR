@@ -13,7 +13,7 @@ import uvicorn
 import webview
 
 HOST = "127.0.0.1"
-PORT = 5000
+PORT = 8080
 URL  = f"http://{HOST}:{PORT}"
 
 

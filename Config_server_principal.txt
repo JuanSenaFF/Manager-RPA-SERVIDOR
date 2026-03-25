@@ -11,9 +11,3 @@ Basta dar 2 cliques nele!
 ## ⚙️ Conexão dos Agentes
 Para o Agente do servidor 31 (e qualquer outro) conversar com o seu Orquestrador, certifique-se de que o `.env` deles está configurado com o final `:5500` igual a este projeto. Ex:
 `MANAGER_URL=http://10.124.100.4:5500/agents/report`
-
-## 🛡️ Liberando a Porta no Firewall (Importante)
-Se ao testar a conexão o servidor agente não conseguir acessar a porta, o Firewall do servidor principal pode estar bloqueando.
-Execute o seguinte comando no **PowerShell como Administrador** dentro do seu **Servidor Principal** para permitir o tráfego de entrada na porta 5500:
-
-`New-NetFirewallRule -DisplayName "Orquestrador RPA - Porta 5500" -Direction Inbound -LocalPort 5500 -Protocol TCP -Action Allow`

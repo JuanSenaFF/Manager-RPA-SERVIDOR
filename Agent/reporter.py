@@ -11,7 +11,7 @@ from controller import verificar_processos_gerenciados, carregar_scripts, _norm_
 
 load_dotenv()
 
-MANAGER_URL   = os.getenv("MANAGER_URL", "http://localhost:5000/agents/report")
+MANAGER_URL   = os.getenv("MANAGER_URL", "http://localhost:505/agents/report")
 # O AGENT_ID deve ser apenas o hostname da máquina (ex: JUANO-LOCAL, BRTDTBGS0031SL)
 AGENT_ID      = os.getenv("AGENT_ID", socket.gethostname())
 HEARTBEAT_INTERVAL = int(os.getenv("HEARTBEAT_INTERVAL", "10"))
