@@ -1,0 +1,40 @@
+========================================================
+RESUMO DO MANAGER RPA - DIA 1
+========================================================
+
+1. O QUE FOI FEITO HOJE:
+--------------------------------------------------------
+- Criação do "Agent Headless": serviço focado e leve que roda nos servidores para acionar/encerrar scripts Python através de subprocessos.
+- Comunicação via Heartbeat: os Agents mandam "estou vivo" (status e processos) para o Orquestrador Central a cada 10 segundos, via requisição HTTP assíncrona.
+- Separação Arquitetural: Arquivos divididos nas pastas `Agent/` e `Orquestrador/`.
+- Suporte a Múltiplos Perfis (Multi-Agent): Ao invés de lidar com permissões do Windows cruzadas, foi criada a infraestrutura onde o Agent sobe automaticamente a partir da 
+porta 8000 para qualquer usuário que logar no servidor, atrelando seus robôs diretamente à sessão dele.
+- Criação do Dashboard Desktop (Orquestrador): Interface gráfica executável localmente via `pywebview`, que consolida a visão de todos os perfis e servidores na rede com botões
+ de Start/Stop dinâmicos.
+
+--------------------------------------------------------
+2. PRÓXIMOS PASSOS (O QUE FAZER AMANHÃ):
+--------------------------------------------------------
+- Configurar os IPs / URLs Reais no `.env`: 
+  No `.env` do Agent, substituir 'http://localhost:5000' pelo IP fixo que rodará a interface do seu Orquestrador na rede, e configurar o próprio AGENT_URL 
+  (se necessário customizá-lo para que o Orquestrador o encontre fora do localhost).
+- Validar as portas no Firewall do Windows: Liberar o tráfego nas portas que os Agents vão usar (8000, 8001, etc.) e na 5000 (onde o Orquestrador recebe).
+- Colocar o `iniciar_agent.bat` (que comentei no md) no `shell:startup` dos perfis reais dos robôs e testar o auto-login.
+- Popular o arquivo `scripts.yaml` oficial com os caminhos corretos dos robôs que você utiliza na empresa.
+
+--------------------------------------------------------
+3. POSSÍVEIS MELHORIAS E EVOLUÇÕES FUTURAS:
+--------------------------------------------------------
+[ Segurança ]
+- Implementar uma simples API-Key ou Token nos headers das conexões FastAPI para evitar que qualquer pessoa da rede dê 'START/STOP' nos seus RPA's se descobrir as rotas HTTP.
+
+[ Persistência e Logs ]
+- O Orquestrador atual guarda os Agents num dicionário em memória (limpa quando o app desktop fecha). Seria legal ligar isso num banco SQLite no Orquestrador para guardar: 
+qual horário o robô X subiu vs caiu na semana toda, gerando relatórios de SLA.
+- Fazer a saída do 'print()' dos scripts RPA serem repassadas para a tela ou gravadas num arquivo .log acompanhável pelo Orquestrador.
+
+[ Tolerância a Falhas ]
+- Criar rotina para que, se a tela do Orquestrador parar de receber heartbeats por 30s de um servidor, os cards daquele Agent fiquem cinzas (Offline/Inalcançável), 
+alertando ao invés de deixá-los visíveis sem estarem respondendo de verdade.
+
+Bom descanso! Quando voltar, o projeto estará todo versionado e pronto na ramificação `main` do repositório Gerenciador-de-RPA.
