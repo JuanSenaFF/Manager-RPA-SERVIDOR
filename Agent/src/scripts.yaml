@@ -1,0 +1,24 @@
+# =============================================================================
+# scripts.yaml — Mapeamento Local de Robôs (Agent)
+# =============================================================================
+# INSTRUÇÕES DE USO:
+# Este arquivo é o "Mapa Local" do servidor. Ele ensina o Agent onde os 
+# arquivos .py de cada robô estão salvos fisicamente nesta máquina.
+#
+# 1. `nome`: Deve ser EXATAMENTE IGUAL ao nome cadastrado no `infra.yaml` do Orquestrador.
+#    (Ex: cancelamento_siebel, reagendamento_next)
+# 
+# 2. `path`: O caminho completo do script '.py' no disco rigido deste servidor. 
+#    IMPORTANTE: No Windows, sempre use barras vazadas duplas (\\) entre as pastas!
+#    Correto: "C:\\Robos\\cancelamento.py"
+#    Errado:  "C:\Robos\cancelamento.py"
+# =============================================================================
+scripts:
+    - nome: reagendamento_next_main
+      path: \\BRTGCBGS0001SL\Automacoes\Producao\Reagendamento_Digital\Next-Reagendamento\reagendamento_next_main.py
+    - nome: cancelamento_next_main
+      path: \\BRTGCBGS0001SL\Automacoes\Producao\Cancelamento_Digital\Cancelamento_NEXT\cancelamento_next_main.py
+    - nome: cancelamento_siebel_main
+      path: \\BRTGCBGS0001SL\Automacoes\Producao\Cancelamento_Digital\Cancelamento_Siebel\cancelamento_siebel_main.py
+    - nome: insercao_cota_request_v3_main
+      path: \\BRTGCBGS0001SL\Automacoes\Producao\Insercao_Cota Requests_V3\insercao_cota_request_v3_main.py
