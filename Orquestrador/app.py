@@ -1,7 +1,7 @@
 """
 app.py — Ponto de entrada do Orquestrador como aplicativo desktop.
 
-Sobe o servidor FastAPI central na porta 5000 e abre a interface web
+Sobe o servidor Flask central na porta 8080 e abre a interface web
 do orquestrador via pywebview.
 """
 
@@ -9,8 +9,8 @@ import sys
 import threading
 import time
 
-import uvicorn
 import webview
+from main import app as flask_app
 
 HOST = "127.0.0.1"
 PORT = 8080
@@ -18,16 +18,9 @@ URL  = f"http://{HOST}:{PORT}"
 
 
 def _run_server():
-    """Inicia o uvicorn do Orquestrador em thread de fundo."""
-    config = uvicorn.Config(
-        "main:app",
-        host='0.0.0.0',
-        port=PORT,
-        log_level="warning",
-        reload=False,
-    )
-    server = uvicorn.Server(config)
-    server.run()
+    """Inicia o Flask do Orquestrador em thread de fundo."""
+    # use_reloader=False é essencial quando roda em uma thread paralela
+    flask_app.run(host='0.0.0.0', port=PORT, use_reloader=False, threaded=True)
 
 
 def _aguardar_servidor(timeout: int = 10) -> bool:
