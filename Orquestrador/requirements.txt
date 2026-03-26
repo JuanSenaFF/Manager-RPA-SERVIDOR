@@ -1,8 +1,4 @@
-fastapi
-
-uvicorn
-
-httpx
-pywebview
-
+flask
+flask-cors
+requests
 pyyaml
